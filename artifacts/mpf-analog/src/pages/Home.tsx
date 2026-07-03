@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowRight, Camera, Lightbulb, Users } from 'lucide-react';
+import { ArrowRight, Camera, Lightbulb, Users, Zap } from 'lucide-react';
 import heroImg from '@/assets/hero.jpg';
 import { members, galleryPhotos } from '@/lib/data';
 import PhotoGrid from '@/components/PhotoGrid';
@@ -53,7 +53,8 @@ export default function Home() {
             {[
               { icon: <Camera size={32} />, title: 'FOTOGRAFI', desc: 'Menangkap momen yang tak terulang dengan teknik dan rasa.' },
               { icon: <Lightbulb size={32} />, title: 'KREATIVITAS', desc: 'Wadah eksplorasi ide tanpa batas bagi setiap anggota.' },
-              { icon: <Users size={32} />, title: 'KOLABORASI', desc: 'Bekerjasama menciptakan karya visual yang berdampak.' }
+              { icon: <Users size={32} />, title: 'KOLABORASI', desc: 'Bekerjasama menciptakan karya visual yang berdampak.' },
+              { icon: <Zap size={32} />, title: 'INOVASI', desc: 'Menghadirkan pendekatan baru dalam dunia fotografi dan dokumentasi visual.' }
             ].map((feature, idx) => (
               <motion.div 
                 key={feature.title}
