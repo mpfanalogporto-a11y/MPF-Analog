@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Photo } from '@/lib/data';
+import type { Photo } from '@workspace/api-client-react';
 
 interface PhotoGridProps {
   photos: Photo[];
 }
 
 export default function PhotoGrid({ photos }: PhotoGridProps) {
-  const [loaded, setLoaded] = useState<Record<string, boolean>>({});
+  const [loaded, setLoaded] = useState<Record<number, boolean>>({});
 
   return (
     <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">

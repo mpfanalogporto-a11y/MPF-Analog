@@ -1,21 +1,21 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { galleryPhotos } from '@/lib/data';
+import { useListPhotos } from '@workspace/api-client-react';
 import PhotoGrid from '@/components/PhotoGrid';
 
 const CATEGORIES = ['SEMUA', 'STREET', 'EVENT', 'PORTRAIT', 'LANDSCAPE', 'DOKUMENTASI'];
 
 export default function Galeri() {
+  const { data: galleryPhotos = [] } = useListPhotos();
   const [activeTab, setActiveTab] = useState('SEMUA');
   const [visibleCount, setVisibleCount] = useState(15);
 
   const filteredPhotos = useMemo(() => {
-    // Shuffle photos slightly for the "SEMUA" tab so it's not strictly grouped by member
     const photos = activeTab === 'SEMUA' 
       ? [...galleryPhotos].sort(() => Math.random() - 0.5)
       : galleryPhotos.filter(p => p.category === activeTab);
     return photos;
-  }, [activeTab]);
+  }, [activeTab, galleryPhotos]);
 
   const displayedPhotos = filteredPhotos.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPhotos.length;
@@ -45,7 +45,7 @@ export default function Galeri() {
               key={category}
               onClick={() => {
                 setActiveTab(category);
-                setVisibleCount(15); // Reset count on tab change
+                setVisibleCount(15);
               }}
               className={`relative px-6 py-2.5 text-sm font-medium tracking-widest transition-colors rounded-full ${
                 activeTab === category ? 'text-background' : 'text-foreground/70 hover:text-foreground hover:bg-foreground/5'

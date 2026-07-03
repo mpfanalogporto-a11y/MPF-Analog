@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
 import { Link } from 'wouter';
-import { members } from '@/lib/data';
+import { useListMembers } from '@workspace/api-client-react';
 
 export default function Anggota() {
+  const { data: members = [] } = useListMembers();
+
   return (
     <div className="w-full pt-24 pb-32">
       <div className="container mx-auto px-4 md:px-8">
@@ -22,7 +24,7 @@ export default function Anggota() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 max-w-6xl mx-auto">
           {members.map((member, idx) => (
-            <Link key={member.id} href={`/anggota/${member.id}`}>
+            <Link key={member.id} href={`/anggota/${member.slug}`}>
               <motion.div 
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}

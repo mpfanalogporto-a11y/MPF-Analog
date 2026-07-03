@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
+import { useGetSettings } from '@workspace/api-client-react';
+
+const DEFAULT_QUOTE = '"MPF Analog (Mikamones Photography) adalah organisasi fotografi di Universitas Muhammadiyah Jakarta yang berfokus pada dokumentasi kegiatan, pengembangan kreativitas, serta kolaborasi dalam karya visual."';
+const DEFAULT_PARAGRAPH_1 = 'Kami percaya bahwa setiap jepretan kamera bukan hanya sekadar merekam cahaya, melainkan membekukan waktu, emosi, dan cerita. Melalui wadah ini, kami belajar melihat dunia dengan lebih peka dan merangkainya menjadi memori yang abadi.';
+const DEFAULT_PARAGRAPH_2 = 'Berakar dari kecintaan pada estetika analog, kami terus mengeksplorasi batas-batas medium visual, saling mendukung satu sama lain, dan berkontribusi mendokumentasikan perjalanan komunitas di sekitar kami.';
 
 export default function Tentang() {
+  const { data: settings = {} } = useGetSettings();
+
   return (
     <div className="w-full min-h-[80vh] flex items-center pt-24 pb-32">
       <div className="container mx-auto px-4 md:px-8">
@@ -17,16 +24,16 @@ export default function Tentang() {
             
             <div className="prose prose-lg md:prose-xl mx-auto text-foreground/80 leading-relaxed">
               <p className="font-serif text-2xl md:text-3xl text-foreground font-medium italic mb-10 leading-snug">
-                "MPF Analog (Mikamones Photography) adalah organisasi fotografi di Universitas Muhammadiyah Jakarta yang berfokus pada dokumentasi kegiatan, pengembangan kreativitas, serta kolaborasi dalam karya visual."
+                {settings.about_quote || DEFAULT_QUOTE}
               </p>
               
               <div className="h-px w-32 bg-foreground/20 mx-auto my-12" />
               
               <p className="mb-6">
-                Kami percaya bahwa setiap jepretan kamera bukan hanya sekadar merekam cahaya, melainkan membekukan waktu, emosi, dan cerita. Melalui wadah ini, kami belajar melihat dunia dengan lebih peka dan merangkainya menjadi memori yang abadi.
+                {settings.about_paragraph_1 || DEFAULT_PARAGRAPH_1}
               </p>
               <p>
-                Berakar dari kecintaan pada estetika analog, kami terus mengeksplorasi batas-batas medium visual, saling mendukung satu sama lain, dan berkontribusi mendokumentasikan perjalanan komunitas di sekitar kami.
+                {settings.about_paragraph_2 || DEFAULT_PARAGRAPH_2}
               </p>
             </div>
           </motion.div>

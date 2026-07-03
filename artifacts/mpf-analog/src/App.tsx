@@ -7,6 +7,11 @@ import Tentang from '@/pages/Tentang';
 import Anggota from '@/pages/Anggota';
 import MemberPortfolio from '@/pages/MemberPortfolio';
 import Galeri from '@/pages/Galeri';
+import AdminLogin from '@/pages/admin/AdminLogin';
+import AdminDashboard from '@/pages/admin/AdminDashboard';
+import ProtectedRoute from '@/components/ProtectedRoute';
+import { AuthProvider } from '@/lib/auth-context';
+import { Toaster } from '@/components/ui/sonner';
 import { useEffect } from 'react';
 import { useLocation } from 'wouter';
 
@@ -21,7 +26,7 @@ function ScrollToTop() {
   return null;
 }
 
-function Router() {
+function PublicSite() {
   return (
     <Layout>
       <Switch>
@@ -36,13 +41,32 @@ function Router() {
   );
 }
 
+function Router() {
+  return (
+    <Switch>
+      <Route path="/admin/login" component={AdminLogin} />
+      <Route path="/admin">
+        <ProtectedRoute>
+          <AdminDashboard />
+        </ProtectedRoute>
+      </Route>
+      <Route>
+        <PublicSite />
+      </Route>
+    </Switch>
+  );
+}
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-        <ScrollToTop />
-        <Router />
-      </WouterRouter>
+      <AuthProvider>
+        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
+          <ScrollToTop />
+          <Router />
+        </WouterRouter>
+        <Toaster />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

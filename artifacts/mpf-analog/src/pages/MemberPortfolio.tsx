@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useParams } from 'wouter';
 import { ArrowLeft, Instagram } from 'lucide-react';
-import { members, galleryPhotos } from '@/lib/data';
+import { useGetMember, useListPhotos } from '@workspace/api-client-react';
 import PhotoGrid from '@/components/PhotoGrid';
 import NotFound from '@/pages/not-found';
 
@@ -10,23 +10,36 @@ const CATEGORIES = ['SEMUA', 'STREET', 'EVENT', 'PORTRAIT', 'LANDSCAPE', 'DOKUME
 
 export default function MemberPortfolio() {
   const params = useParams();
-  const id = params.id;
-  
-  const member = members.find(m => m.id === id);
-  const memberPhotos = galleryPhotos.filter(p => p.memberId === id);
-  
+  const id = params.id ?? '';
+
+  const { data: member, isLoading, isError } = useGetMember(id);
+  const { data: allPhotos = [] } = useListPhotos();
+
   const [activeTab, setActiveTab] = useState('SEMUA');
   const [visibleCount, setVisibleCount] = useState(12);
 
+  const memberPhotos = useMemo(
+    () => allPhotos.filter((p) => p.memberId === member?.id),
+    [allPhotos, member?.id],
+  );
+
   const filteredPhotos = useMemo(() => {
     if (activeTab === 'SEMUA') return memberPhotos;
-    return memberPhotos.filter(p => p.category === activeTab);
+    return memberPhotos.filter((p) => p.category === activeTab);
   }, [activeTab, memberPhotos]);
 
   const displayedPhotos = filteredPhotos.slice(0, visibleCount);
   const hasMore = visibleCount < filteredPhotos.length;
 
-  if (!member) {
+  if (isLoading) {
+    return (
+      <div className="w-full min-h-[60vh] flex items-center justify-center text-foreground/50 tracking-widest text-sm">
+        MEMUAT...
+      </div>
+    );
+  }
+
+  if (isError || !member) {
     return <NotFound />;
   }
 
@@ -62,9 +75,11 @@ export default function MemberPortfolio() {
               "{member.bio}"
             </p>
             
-            <a href={`https://instagram.com/${member.instagram.replace('@', '')}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium hover:bg-foreground/80 transition-colors">
-              <Instagram size={18} /> {member.instagram}
-            </a>
+            {member.instagram && (
+              <a href={`https://instagram.com/${member.instagram.replace('@', '')}`} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-2.5 rounded-full text-sm font-medium hover:bg-foreground/80 transition-colors">
+                <Instagram size={18} /> {member.instagram}
+              </a>
+            )}
           </div>
         </motion.div>
 

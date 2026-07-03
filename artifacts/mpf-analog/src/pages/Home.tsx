@@ -2,11 +2,14 @@ import { Link } from 'wouter';
 import { motion } from 'framer-motion';
 import { ArrowRight, Camera, Lightbulb, Users, Zap } from 'lucide-react';
 import heroImg from '@/assets/hero.jpg';
-import { members, galleryPhotos } from '@/lib/data';
+import { useListMembers, useListPhotos, useGetSettings } from '@workspace/api-client-react';
 import PhotoGrid from '@/components/PhotoGrid';
 
 export default function Home() {
-  const previewPhotos = galleryPhotos.slice(0, 8);
+  const { data: members = [] } = useListMembers();
+  const { data: photos = [] } = useListPhotos();
+  const { data: settings = {} } = useGetSettings();
+  const previewPhotos = photos.slice(0, 8);
 
   return (
     <div className="w-full">
@@ -29,14 +32,14 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6">
-              MPF ANALOG
+              {settings.site_title || 'MPF ANALOG'}
             </h1>
             <div className="h-px w-24 bg-foreground/50 mx-auto mb-6" />
             <h2 className="text-lg md:text-xl tracking-widest mb-6 font-medium">
-              MAHASISWA PENCINTA FOTOGRAFI
+              {settings.site_tagline || 'MAHASISWA PENCINTA FOTOGRAFI'}
             </h2>
             <p className="text-base md:text-lg text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Menginspirasi, berkarya, dan berkontribusi melalui fotografi. Merekam setiap momen menjadi cerita yang abadi.
+              {settings.hero_description || 'Menginspirasi, berkarya, dan berkontribusi melalui fotografi. Merekam setiap momen menjadi cerita yang abadi.'}
             </p>
             <Link href="/galeri" className="inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-medium tracking-widest text-sm hover:bg-foreground/90 transition-colors group">
               LIHAT GALERI
@@ -90,7 +93,7 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {members.map((member, idx) => (
-              <Link key={member.id} href={`/anggota/${member.id}`}>
+              <Link key={member.id} href={`/anggota/${member.slug}`}>
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
