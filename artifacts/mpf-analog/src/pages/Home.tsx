@@ -32,6 +32,9 @@ export default function Home() {
               MPF ANALOG
             </h1>
             <div className="h-px w-24 bg-foreground/50 mx-auto mb-6" />
+            <h2 className="text-lg md:text-xl tracking-widest mb-6 font-medium">
+              MAHASISWA PENCINTA FOTOGRAFI
+            </h2>
             <p className="text-base md:text-lg text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
               Menginspirasi, berkarya, dan berkontribusi melalui fotografi dan film. Merekam setiap momen menjadi cerita yang abadi.
             </p>
