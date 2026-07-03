@@ -3,6 +3,7 @@ import nabilaAvatar from '@/assets/members/nabila-putri.jpg';
 import fajarAvatar from '@/assets/members/fajar-ramdani.jpg';
 import raihanAvatar from '@/assets/members/raihan-fariz.jpg';
 import salsabilaAvatar from '@/assets/members/salsabila-a.jpg';
+import fahriAvatar from '@/assets/members/fahri.jpg';
 
 // Street
 import street1 from '@/assets/gallery/street-1.jpg';
@@ -97,6 +98,15 @@ export const members: Member[] = [
     bio: "Dokumentasi bukan sekadar memotret, tapi merekam jiwa dari setiap kegiatan dan kebersamaan.",
     instagram: "@salsabilaa",
     avatar: salsabilaAvatar,
+  },
+  {
+    id: "fahri",
+    name: "Fahri",
+    role: "Divisi Pendidikan",
+    shortRole: "Divisi Pendidikan",
+    bio: "Pendidikan fotografi adalah investasi terbaik untuk menghasilkan karya yang bermakna dan berdampak.",
+    instagram: "@fahri",
+    avatar: fahriAvatar,
   }
 ];
 
