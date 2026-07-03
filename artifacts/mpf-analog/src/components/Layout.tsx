@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'wouter';
-import { Camera, Instagram, Youtube, Mail, Menu, X } from 'lucide-react';
+import { Instagram, Youtube, Mail, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '@/assets/logo.jpg';
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [location] = useLocation();
@@ -21,9 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-50 w-full border-b border-foreground/10 bg-background/80 backdrop-blur-md">
         <div className="container mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-foreground text-background flex items-center justify-center transition-transform group-hover:rotate-12">
-              <Camera size={20} />
-            </div>
+            <img src={logoImg} alt="MPF Analog Logo" className="w-10 h-10 rounded-full object-cover transition-transform group-hover:rotate-12" />
             <span className="font-serif font-bold text-xl tracking-wider">MPF ANALOG</span>
           </Link>
 
@@ -107,9 +106,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       {/* Footer */}
       <footer className="border-t border-foreground/10 py-16 mt-20">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-center justify-center text-center">
-          <div className="w-12 h-12 rounded-full bg-foreground text-background flex items-center justify-center mb-6">
-            <Camera size={24} />
-          </div>
+          <img src={logoImg} alt="MPF Analog Logo" className="w-16 h-16 rounded-full object-cover mb-6" />
           <h2 className="font-serif text-2xl font-bold tracking-widest mb-2">MPF ANALOG</h2>
           <p className="text-sm text-foreground/70 mb-8 max-w-md mx-auto leading-relaxed">
             Organisasi Fotografi<br/>
