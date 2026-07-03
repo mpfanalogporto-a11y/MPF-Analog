@@ -1,6 +1,6 @@
 import { Link } from 'wouter';
 import { motion } from 'framer-motion';
-import { ArrowRight, Camera, Film, Lightbulb, Users } from 'lucide-react';
+import { ArrowRight, Camera, Lightbulb, Users } from 'lucide-react';
 import heroImg from '@/assets/hero.jpg';
 import { members, galleryPhotos } from '@/lib/data';
 import PhotoGrid from '@/components/PhotoGrid';
@@ -36,7 +36,7 @@ export default function Home() {
               MAHASISWA PENCINTA FOTOGRAFI
             </h2>
             <p className="text-base md:text-lg text-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Menginspirasi, berkarya, dan berkontribusi melalui fotografi dan film. Merekam setiap momen menjadi cerita yang abadi.
+              Menginspirasi, berkarya, dan berkontribusi melalui fotografi. Merekam setiap momen menjadi cerita yang abadi.
             </p>
             <Link href="/galeri" className="inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 rounded-full font-medium tracking-widest text-sm hover:bg-foreground/90 transition-colors group">
               LIHAT GALERI
@@ -52,7 +52,6 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
             {[
               { icon: <Camera size={32} />, title: 'FOTOGRAFI', desc: 'Menangkap momen yang tak terulang dengan teknik dan rasa.' },
-              { icon: <Film size={32} />, title: 'FILM', desc: 'Bercerita lewat gambar bergerak dan suara yang menggugah.' },
               { icon: <Lightbulb size={32} />, title: 'KREATIVITAS', desc: 'Wadah eksplorasi ide tanpa batas bagi setiap anggota.' },
               { icon: <Users size={32} />, title: 'KOLABORASI', desc: 'Bekerjasama menciptakan karya visual yang berdampak.' }
             ].map((feature, idx) => (

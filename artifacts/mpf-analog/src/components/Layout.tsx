@@ -112,7 +112,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </div>
           <h2 className="font-serif text-2xl font-bold tracking-widest mb-2">MPF ANALOG</h2>
           <p className="text-sm text-foreground/70 mb-8 max-w-md mx-auto leading-relaxed">
-            Organisasi Fotografi & Film<br/>
+            Organisasi Fotografi<br/>
             Universitas Muhammadiyah Jakarta
           </p>
           

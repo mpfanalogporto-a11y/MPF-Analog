@@ -17,7 +17,7 @@ export default function Tentang() {
             
             <div className="prose prose-lg md:prose-xl mx-auto text-foreground/80 leading-relaxed">
               <p className="font-serif text-2xl md:text-3xl text-foreground font-medium italic mb-10 leading-snug">
-                "MPF Analog (Mikamones Photography Film) adalah organisasi fotografi dan film di Universitas Muhammadiyah Jakarta yang berfokus pada dokumentasi kegiatan, pengembangan kreativitas, serta kolaborasi dalam karya visual."
+                "MPF Analog (Mikamones Photography) adalah organisasi fotografi di Universitas Muhammadiyah Jakarta yang berfokus pada dokumentasi kegiatan, pengembangan kreativitas, serta kolaborasi dalam karya visual."
               </p>
               
               <div className="h-px w-32 bg-foreground/20 mx-auto my-12" />
