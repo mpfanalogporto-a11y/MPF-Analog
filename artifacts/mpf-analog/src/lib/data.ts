@@ -105,7 +105,7 @@ export const members: Member[] = [
     role: "Divisi Pendidikan",
     shortRole: "Divisi Pendidikan",
     bio: "Pendidikan fotografi adalah investasi terbaik untuk menghasilkan karya yang bermakna dan berdampak.",
-    instagram: "@ikhwana",
+    instagram: "@wanmar__",
     avatar: fahriAvatar,
   }
 ];
