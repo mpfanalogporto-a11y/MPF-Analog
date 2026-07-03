@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "MPF Analog Portfolio"
+version = "1.0.0"
+id = "artifacts/mpf-analog"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23832
+
+[services.development]
+run = "pnpm --filter @workspace/mpf-analog run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mpf-analog", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/mpf-analog/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23832"
+BASE_PATH = "/"
