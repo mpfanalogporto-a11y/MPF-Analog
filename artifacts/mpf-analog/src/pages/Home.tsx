@@ -120,8 +120,8 @@ export default function Home() {
       {/* Gallery Strip */}
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-8 mb-12 text-center">
-          <h2 className="font-serif text-4xl font-bold tracking-tight mb-4">Karya Pilihan</h2>
-          <p className="text-foreground/70 max-w-lg mx-auto">Sebagian kecil dari apa yang kami lihat dari balik lensa.</p>
+          <h2 className="font-serif text-4xl font-bold tracking-tight mb-4">Foto Kegiatan</h2>
+          <p className="text-foreground/70 max-w-lg mx-auto">Sekilas dokumentasi kegiatan dan momen bersama MPF Analog.</p>
         </div>
         
         <div className="px-4">
