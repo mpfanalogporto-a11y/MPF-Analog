@@ -26,7 +26,7 @@ export default function Tentang() {
                 Kami percaya bahwa setiap jepretan kamera bukan hanya sekadar merekam cahaya, melainkan membekukan waktu, emosi, dan cerita. Melalui wadah ini, kami belajar melihat dunia dengan lebih peka dan merangkainya menjadi memori yang abadi.
               </p>
               <p>
-                Berakar dari kecintaan pada estetika analog dan sinematik, kami terus mengeksplorasi batas-batas medium visual, saling mendukung satu sama lain, dan berkontribusi mendokumentasikan perjalanan komunitas di sekitar kami.
+                Berakar dari kecintaan pada estetika analog, kami terus mengeksplorasi batas-batas medium visual, saling mendukung satu sama lain, dan berkontribusi mendokumentasikan perjalanan komunitas di sekitar kami.
               </p>
             </div>
           </motion.div>
