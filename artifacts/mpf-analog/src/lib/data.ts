@@ -5,6 +5,17 @@ import raihanAvatar from '@/assets/members/raihan-fariz.jpg';
 import salsabilaAvatar from '@/assets/members/salsabila-a.jpg';
 import fahriAvatar from '@/assets/members/fahri.jpg';
 
+// Ikhwan A. — real photos
+import ikhwanStreet1 from '@/assets/members/ikhwan/street-1.jpg';
+import ikhwanStreet2 from '@/assets/members/ikhwan/street-2.jpg';
+import ikhwanLandscape1 from '@/assets/members/ikhwan/landscape-1.jpg';
+import ikhwanLandscape2 from '@/assets/members/ikhwan/landscape-2.jpg';
+import ikhwanDok1 from '@/assets/members/ikhwan/dokumentasi-1.jpg';
+import ikhwanEvent1 from '@/assets/members/ikhwan/event-1.jpg';
+import ikhwanEvent2 from '@/assets/members/ikhwan/event-2.jpg';
+import ikhwanEvent3 from '@/assets/members/ikhwan/event-3.jpg';
+import ikhwanEvent4 from '@/assets/members/ikhwan/event-4.jpg';
+
 // Street
 import street1 from '@/assets/gallery/street-1.jpg';
 import street2 from '@/assets/gallery/street-2.jpg';
@@ -118,20 +129,36 @@ const pool = {
   DOKUMENTASI: [dok1, dok2, dok3, dok4]
 };
 
-// Generate deterministic photos based on pool mapping
-export const galleryPhotos: Photo[] = members.flatMap((member, memberIdx) => {
-  const categories: Array<keyof typeof pool> = ['STREET', 'EVENT', 'PORTRAIT', 'LANDSCAPE', 'DOKUMENTASI'];
-  
-  // Assign 6 photos per member, taking from different categories
-  return Array.from({ length: 6 }).map((_, i) => {
-    const category = categories[(memberIdx + i) % categories.length];
-    const imageSrc = pool[category][(memberIdx + i) % 4];
-    return {
-      id: `${member.id}-${category.toLowerCase()}-${i}`,
-      memberId: member.id,
-      category,
-      src: imageSrc,
-      title: `${category} by ${member.name}`
-    };
-  });
-});
+// Ikhwan's real photos with correct genres
+const ikhwanPhotos: Photo[] = [
+  { id: 'ikhwan-a-street-0', memberId: 'ikhwan-a', category: 'STREET', src: ikhwanStreet1, title: 'STREET by Ikhwan A.' },
+  { id: 'ikhwan-a-street-1', memberId: 'ikhwan-a', category: 'STREET', src: ikhwanStreet2, title: 'STREET by Ikhwan A.' },
+  { id: 'ikhwan-a-landscape-0', memberId: 'ikhwan-a', category: 'LANDSCAPE', src: ikhwanLandscape1, title: 'LANDSCAPE by Ikhwan A.' },
+  { id: 'ikhwan-a-landscape-1', memberId: 'ikhwan-a', category: 'LANDSCAPE', src: ikhwanLandscape2, title: 'LANDSCAPE by Ikhwan A.' },
+  { id: 'ikhwan-a-dok-0', memberId: 'ikhwan-a', category: 'DOKUMENTASI', src: ikhwanDok1, title: 'DOKUMENTASI by Ikhwan A.' },
+  { id: 'ikhwan-a-event-0', memberId: 'ikhwan-a', category: 'EVENT', src: ikhwanEvent1, title: 'EVENT by Ikhwan A.' },
+  { id: 'ikhwan-a-event-1', memberId: 'ikhwan-a', category: 'EVENT', src: ikhwanEvent2, title: 'EVENT by Ikhwan A.' },
+  { id: 'ikhwan-a-event-2', memberId: 'ikhwan-a', category: 'EVENT', src: ikhwanEvent3, title: 'EVENT by Ikhwan A.' },
+  { id: 'ikhwan-a-event-3', memberId: 'ikhwan-a', category: 'EVENT', src: ikhwanEvent4, title: 'EVENT by Ikhwan A.' },
+];
+
+// Generate deterministic photos based on pool mapping (skip Ikhwan — he has real photos)
+export const galleryPhotos: Photo[] = [
+  ...members
+    .filter(member => member.id !== 'ikhwan-a')
+    .flatMap((member, memberIdx) => {
+      const categories: Array<keyof typeof pool> = ['STREET', 'EVENT', 'PORTRAIT', 'LANDSCAPE', 'DOKUMENTASI'];
+      return Array.from({ length: 6 }).map((_, i) => {
+        const category = categories[(memberIdx + i) % categories.length];
+        const imageSrc = pool[category][(memberIdx + i) % 4];
+        return {
+          id: `${member.id}-${category.toLowerCase()}-${i}`,
+          memberId: member.id,
+          category,
+          src: imageSrc,
+          title: `${category} by ${member.name}`
+        };
+      });
+    }),
+  ...ikhwanPhotos,
+];
