@@ -100,12 +100,12 @@ export const members: Member[] = [
     avatar: salsabilaAvatar,
   },
   {
-    id: "fahri",
-    name: "Fahri",
+    id: "ikhwan-a",
+    name: "Ikhwan A.",
     role: "Divisi Pendidikan",
     shortRole: "Divisi Pendidikan",
     bio: "Pendidikan fotografi adalah investasi terbaik untuk menghasilkan karya yang bermakna dan berdampak.",
-    instagram: "@fahri",
+    instagram: "@ikhwana",
     avatar: fahriAvatar,
   }
 ];
